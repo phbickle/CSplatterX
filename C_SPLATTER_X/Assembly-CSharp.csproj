@@ -53,7 +53,6 @@
      <Compile Include="Assets\SCRIPTS\Tags.cs" />
      <None Include="Assets\SPRITES\New Text Document.txt" />
      <None Include="Assets\TEXTURES\New Text Document.txt" />
-     <None Include="Assets\SOUNDS\New Text Document.txt" />
      <None Include="Assets\ANIMATIONS\TVHEADWALKING\Walking Animation Order.txt" />
      <None Include="Assets\SCRIPTS\New Text Document.txt" />
      <None Include="Assets\ANIMATIONS\BROCOTREEWALKING\Walking Animation Order.txt" />

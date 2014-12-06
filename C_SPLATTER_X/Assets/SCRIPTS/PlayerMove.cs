@@ -18,6 +18,9 @@ public class PlayerMove : MonoBehaviour
     private Vector2 jumpMove;               //The jump vector, so that we can apply the jumpForce
     private Vector2 lookBack;               //looking at left side of the screen
     private Vector2 lookForward;            //looking at right side of the screen
+    public AudioClip jumpClip;
+    public AudioClip attackClip;
+
     public float SPEED
     {
         get 
@@ -57,6 +60,7 @@ public class PlayerMove : MonoBehaviour
         CheckGround();
         JumpCheck();
         Flip();
+        Attack();
 	}
 
     void FixedUpdate()
@@ -106,12 +110,21 @@ public class PlayerMove : MonoBehaviour
         //reset hasjumped to false
         if(hasJump)
         {
+            AudioSource.PlayClipAtPoint(jumpClip, myTransform.position);
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
             rigidbody2D.AddForce(jumpMove);
             hasJump = false;
         }
     }
 
+    void Attack()
+    {
+        if(Input.GetButtonDown("Fire1"))
+        {
+            anim.SetTrigger("attack");
+            AudioSource.PlayClipAtPoint(attackClip, myTransform.position);
+        }
+    }
 
     void CheckGround()
     {

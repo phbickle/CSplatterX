@@ -5,6 +5,10 @@ TextureImporter:
     21300000: PLAYERSTILL
     21300002: PLAYERWALKING-1
     21300004: PLAYERWALKING-2
+    21300006: PLAYERATK-1
+    21300008: PLAYERATK1-swoop
+    21300010: PLAYERATK2-swoop
+    21300012: PLAYERATKBASE
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -46,11 +50,51 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: PLAYERSTILL
+    - name: PLAYERATK-1
       rect:
         serializedVersion: 2
         x: 2
         y: 190
+        width: 54
+        height: 64
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PLAYERATK1-swoop
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 190
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PLAYERATK2-swoop
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 124
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PLAYERATKBASE
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 124
+        width: 46
+        height: 64
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PLAYERSTILL
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 124
         width: 46
         height: 64
       alignment: 0
@@ -60,7 +104,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 124
+        y: 58
         width: 46
         height: 64
       alignment: 0
@@ -69,7 +113,7 @@ TextureImporter:
     - name: PLAYERWALKING-2
       rect:
         serializedVersion: 2
-        x: 2
+        x: 50
         y: 58
         width: 46
         height: 64
