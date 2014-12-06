@@ -88,11 +88,11 @@ public class GameManager : MonoBehaviour
         scoreText.text = "SCORE " + score;
     }
 
-    void PlayMusic()
+    void PlayBlueMusic()
     {
         if (!audio.isPlaying)
         {
-            audio.clip = myPlayList[0] as AudioClip;
+            audio.clip = myPlayList[1] as AudioClip;
             //Debug.Break();
             audio.Play();
         }
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
     {
         if(!audio.isPlaying)
         {
-            audio.clip = myPlayList[1] as AudioClip;
+            audio.clip = myPlayList[5] as AudioClip;
             audio.Play();
         }
     }
@@ -111,7 +111,43 @@ public class GameManager : MonoBehaviour
     {
         if (!audio.isPlaying)
         {
+            audio.clip = myPlayList[0] as AudioClip;
+            audio.Play();
+        }
+    }
+
+    void PlayGreenMusic()
+    {
+        if (!audio.isPlaying)
+        {
             audio.clip = myPlayList[2] as AudioClip;
+            audio.Play();
+        }
+    }
+
+    void PlayOrangeMusic()
+    {
+        if (!audio.isPlaying)
+        {
+            audio.clip = myPlayList[3] as AudioClip;
+            audio.Play();
+        }
+    }
+
+    void PlayPurpleMusic()
+    {
+        if (!audio.isPlaying)
+        {
+            audio.clip = myPlayList[4] as AudioClip;
+            audio.Play();
+        }
+    }
+
+    void PlayWhiteMusic()
+    {
+        if (!audio.isPlaying)
+        {
+            audio.clip = myPlayList[6] as AudioClip;
             audio.Play();
         }
     }
@@ -149,7 +185,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleDown();
-                PlayMusic();
+                PlayBlueMusic();
                 myMaterial.bounciness = 0;
                 break;
             case CurrentColor.black:
@@ -169,7 +205,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleUp();
-                PlayMusic();
+                PlayGreenMusic();
                 myMaterial.bounciness = 0;
                 break;
             case CurrentColor.orange:
@@ -179,7 +215,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleDown();
-                PlayMusic();
+                PlayOrangeMusic();
                 myMaterial.bounciness = 1;
                 break;
             case CurrentColor.purple:
@@ -189,7 +225,7 @@ public class GameManager : MonoBehaviour
                 StickyKeys();
                 VisibleFloor();
                 ScaleDown();
-                PlayMusic();
+                PlayPurpleMusic();
                 myMaterial.bounciness = 0;
                 break;
             case CurrentColor.red:
@@ -209,7 +245,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleDown();
-                PlayMusic();
+                PlayWhiteMusic();
                 myMaterial.bounciness = 0;
                 break;
             case CurrentColor.yellow:
@@ -219,7 +255,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleDown();
-                PlayMusic();
+                PlayRedMusic();
                 myMaterial.bounciness = 0;
                 break;
             default:
@@ -228,7 +264,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleDown();
-                PlayMusic();
+                PlayBlackMusic();
                 myMaterial.bounciness = 0;
                 break;
         }
