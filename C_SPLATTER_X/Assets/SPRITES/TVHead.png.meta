@@ -5,6 +5,8 @@ TextureImporter:
     21300000: TV-HEAD STILL
     21300002: TV-HEAD WALKING1
     21300004: TV-HEAD WALKING2
+    21300006: TV-HEAD JUMP1
+    21300008: TV-HEAD JUMP2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -46,11 +48,31 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: TV-HEAD STILL
+    - name: TV-HEAD JUMP1
       rect:
         serializedVersion: 2
         x: 2
-        y: 64
+        y: 192
+        width: 39
+        height: 62
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TV-HEAD JUMP2
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 182
+        width: 31
+        height: 72
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TV-HEAD STILL
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 192
         width: 39
         height: 62
       alignment: 0
@@ -59,8 +81,8 @@ TextureImporter:
     - name: TV-HEAD WALKING1
       rect:
         serializedVersion: 2
-        x: 43
-        y: 64
+        x: 2
+        y: 118
         width: 39
         height: 62
       alignment: 0
@@ -69,8 +91,8 @@ TextureImporter:
     - name: TV-HEAD WALKING2
       rect:
         serializedVersion: 2
-        x: 84
-        y: 64
+        x: 43
+        y: 118
         width: 39
         height: 62
       alignment: 0
