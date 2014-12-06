@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     //Music
     //Menu
     public Object[] myPlayList;
+    public Text scoreText;
     //this enmum will be used to control the main menu
     private enum GameStates
     {
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
         yellow
     };
 
+    private int score;
     private GameStates menu;
     private CurrentColor myColor;
     private float colorChangeTimer;
@@ -48,6 +50,18 @@ public class GameManager : MonoBehaviour
             return isGreenOn;
         }
     }
+
+    public int SCORE
+    {
+        get
+        {
+            return score;
+        }
+        set
+        {
+            score = value;
+        }
+    }
     void Awake()
     {
         isGreenOn = false;
@@ -57,6 +71,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag(Tags.player);
         myPlayList = Resources.LoadAll("MUSIC", typeof(AudioClip));
         audio.clip = myPlayList[0] as AudioClip;
+        score = 0;
         //enemy = GameObject.FindGameObjectsWithTag(Tags.enemy);
     }
 
@@ -65,7 +80,13 @@ public class GameManager : MonoBehaviour
     {
         UpdateStates();
         UpdateColors();
+        UpdateScore();
 	}
+
+    void UpdateScore()
+    {
+        scoreText.text = "SCORE " + score;
+    }
 
     void PlayMusic()
     {
@@ -73,6 +94,24 @@ public class GameManager : MonoBehaviour
         {
             audio.clip = myPlayList[0] as AudioClip;
             //Debug.Break();
+            audio.Play();
+        }
+    }
+
+    void PlayRedMusic()
+    {
+        if(!audio.isPlaying)
+        {
+            audio.clip = myPlayList[1] as AudioClip;
+            audio.Play();
+        }
+    }
+
+    void PlayBlackMusic()
+    {
+        if (!audio.isPlaying)
+        {
+            audio.clip = myPlayList[2] as AudioClip;
             audio.Play();
         }
     }
@@ -120,7 +159,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 InvisibleFloor();
                 ScaleDown();
-                PlayMusic();
+                PlayBlackMusic();
                 myMaterial.bounciness = 0;
                 break;
             case CurrentColor.green:
@@ -160,7 +199,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleDown();
-                PlayMusic();
+                PlayRedMusic();
                 myMaterial.bounciness = 0;
                 break;
             case CurrentColor.white:
@@ -287,5 +326,10 @@ public class GameManager : MonoBehaviour
             enemy[i].transform.localScale = new Vector2(1.0f, 1.0f);
             player.transform.localScale = new Vector2(1.0f, 1.0f);
         }
+    }
+
+    public void ReloadLevel()
+    {
+        Application.LoadLevel("main");
     }
 }

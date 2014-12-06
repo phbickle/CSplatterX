@@ -20,6 +20,8 @@ public class PlayerMove : MonoBehaviour
     private Vector2 lookForward;            //looking at right side of the screen
     public AudioClip jumpClip;
     public AudioClip attackClip;
+    public AudioClip deathClip;
+    public GameObject gameOverCanvas;
 
     public float SPEED
     {
@@ -181,5 +183,15 @@ public class PlayerMove : MonoBehaviour
     {
         Vector3 pushVector = myTransform.position - enemy.position;
         rigidbody2D.AddForce(pushVector * pushForce);
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == Tags.death)
+        {
+            AudioSource.PlayClipAtPoint(deathClip, myTransform.position);
+            gameOverCanvas.SetActive(true);
+            this.enabled = false;
+        }
     }
 }
