@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     //Amount of Enemies
     //Music
     //Menu
-
+    public Object[] myPlayList;
     //this enmum will be used to control the main menu
     private enum GameStates
     {
@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
         menu = GameStates.idle;
         myColor = CurrentColor.white;
         player = GameObject.FindGameObjectWithTag(Tags.player);
+        myPlayList = Resources.LoadAll("MUSIC", typeof(AudioClip));
+        audio.clip = myPlayList[0] as AudioClip;
         //enemy = GameObject.FindGameObjectsWithTag(Tags.enemy);
     }
 
@@ -64,6 +66,16 @@ public class GameManager : MonoBehaviour
         UpdateStates();
         UpdateColors();
 	}
+
+    void PlayMusic()
+    {
+        if (!audio.isPlaying)
+        {
+            audio.clip = myPlayList[0] as AudioClip;
+            //Debug.Break();
+            audio.Play();
+        }
+    }
 
     void UpdateStates()
     {
@@ -98,6 +110,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleDown();
+                PlayMusic();
                 myMaterial.bounciness = 0;
                 break;
             case CurrentColor.black:
@@ -107,6 +120,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 InvisibleFloor();
                 ScaleDown();
+                PlayMusic();
                 myMaterial.bounciness = 0;
                 break;
             case CurrentColor.green:
@@ -116,6 +130,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleUp();
+                PlayMusic();
                 myMaterial.bounciness = 0;
                 break;
             case CurrentColor.orange:
@@ -125,6 +140,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleDown();
+                PlayMusic();
                 myMaterial.bounciness = 1;
                 break;
             case CurrentColor.purple:
@@ -134,6 +150,7 @@ public class GameManager : MonoBehaviour
                 StickyKeys();
                 VisibleFloor();
                 ScaleDown();
+                PlayMusic();
                 myMaterial.bounciness = 0;
                 break;
             case CurrentColor.red:
@@ -143,6 +160,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleDown();
+                PlayMusic();
                 myMaterial.bounciness = 0;
                 break;
             case CurrentColor.white:
@@ -152,6 +170,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleDown();
+                PlayMusic();
                 myMaterial.bounciness = 0;
                 break;
             case CurrentColor.yellow:
@@ -161,6 +180,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleDown();
+                PlayMusic();
                 myMaterial.bounciness = 0;
                 break;
             default:
@@ -169,6 +189,7 @@ public class GameManager : MonoBehaviour
                 RegularKeys();
                 VisibleFloor();
                 ScaleDown();
+                PlayMusic();
                 myMaterial.bounciness = 0;
                 break;
         }

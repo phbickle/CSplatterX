@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class EnemyMove : MonoBehaviour 
 {
+    private Animator anim;
     private bool inRange;                   //is the enemy in attack range?
     private bool facingRight;               //is the enemy facing right?
     private float speed;                    //how hast is the enemy?
@@ -43,6 +44,7 @@ public class EnemyMove : MonoBehaviour
 
     void Awake()
     {
+        anim = GetComponent<Animator>();
         inRange = false;
         indexLoc = 0;
         health = 2;
@@ -101,7 +103,7 @@ public class EnemyMove : MonoBehaviour
     {
         rigidbody2D.velocity = new Vector2(direction * speed, rigidbody2D.velocity.y);          //Use rigidbody2D velocity in order to achieve movement
         float moveAbs = Mathf.Abs(speed);                                                       //Absolute value in order to keep a positive number, this will be used when animating
-        
+        anim.SetFloat("speed", moveAbs);
         //Check when to turn towards the character. Such check is baed in position distance.
         if(target.position.x < myTransform.position.x - 2)                                      
         {

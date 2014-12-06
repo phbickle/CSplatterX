@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerMove : MonoBehaviour 
 {
     private GameManager myManager;
+    private Animator anim;
     private bool hasJump;                   //has the player jumped yet?
     private bool isGrounded;                //if the player on the ground or on the air?
     private bool facingRight;               //is the player facing the right side of the screen?
@@ -12,7 +13,6 @@ public class PlayerMove : MonoBehaviour
     private float jumpForce;                //how high can the player jump?
     private float pushForce;                //how far away will the player be pushed from the enemy
     private float jumpDelay;
-    private float repeatDelayPeriod;
     private Transform myTransform;          //player's transform component
     private Transform groundCheck;          //helps to check if we are grounded
     private Vector2 jumpMove;               //The jump vector, so that we can apply the jumpForce
@@ -33,14 +33,15 @@ public class PlayerMove : MonoBehaviour
 
     void Awake()
     {
+        anim = GetComponent<Animator>();
         jumpDelay = 0.0f;
-        repeatDelayPeriod = 1.0f;
+
         facingRight = true;                                                                         //Player starts looking at the right side
         hasJump = false;                                                                            //Hasn't jumped yet
         isGrounded = false;                                                                         //will automatically change when ground is detected
         jumpRequest = false;
         speed = 2.5f;                                                                               //initialize speed
-        jumpForce = 800.0f;                                                                         //initialize jumpForce
+        jumpForce = 400.0f;                                                                         //initialize jumpForce
         pushForce = 400.0f;                                                                         //initialize pushForce
         myManager = GameObject.FindGameObjectWithTag(Tags.GameManager).GetComponent<GameManager>();
         groundCheck = GameObject.FindGameObjectWithTag(Tags.groundCheck).transform;                 //get the groundcheck component
@@ -122,7 +123,7 @@ public class PlayerMove : MonoBehaviour
     {
         float move = Input.GetAxisRaw("Horizontal");                //Axisraw prevents incremental speeds. In other words, speed will be constant since the beginning
         float moveAbs = Mathf.Abs(move);                            //Absolute values of the move variable, it will always be a positive number. This will be used in animation
-
+        anim.SetFloat("speed", moveAbs);
 
         //Axisras will return a number ranging from -1, 0 or 1
         //Depending on the value, the player will turn to the specific side

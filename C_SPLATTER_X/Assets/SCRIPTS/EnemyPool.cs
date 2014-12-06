@@ -37,7 +37,10 @@ public class EnemyPool : MonoBehaviour
     {
         for(int i = 0; i < totalEnemiesCreated; ++i)
         {
-            myEnemy = Instantiate(Resources.Load("PREFABS/PlaceHolderEnemy")) as GameObject;
+            myEnemy = Instantiate(Resources.Load("PREFABS/TVHead")) as GameObject;
+            myEnemyList.Add(myEnemy);
+            myEnemyList[i].SetActive(false);
+            myEnemy = Instantiate(Resources.Load("PREFABS/BrocoTree")) as GameObject;
             myEnemyList.Add(myEnemy);
             myEnemyList[i].SetActive(false);
         }
