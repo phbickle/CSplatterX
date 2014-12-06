@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class EnemyMove : MonoBehaviour 
 {
+    private bool inRange;                   //is the enemy in attack range?
     private bool facingRight;               //is the enemy facing right?
     private float speed;                    //how hast is the enemy?
     private int direction;                  //direction the enemy is looking at
@@ -12,12 +13,27 @@ public class EnemyMove : MonoBehaviour
     private Vector2 lookBack;               //when enemy to the left
     private Vector2 lookForward;            //when enemy looks to the right
     private int indexLoc;                   //Location index to spawn the next enemy
+    private int health;
     private GameObject[] spawnPoints;   //List of spawn points
 
 
+    public int HEALTH
+    {
+        get
+        {
+            return health;
+        }
+        set
+        {
+            health = value;
+        }
+    }
+
     void Awake()
     {
+        inRange = false;
         indexLoc = 0;
+        health = 2;
         spawnPoints = GameObject.FindGameObjectsWithTag(Tags.EnemySpawner);
         target = GameObject.FindGameObjectWithTag(Tags.player).transform;   //find the player
         myTransform = transform;                                            //initialize the enemy transform component
@@ -32,22 +48,41 @@ public class EnemyMove : MonoBehaviour
 	void Update () 
     {
         Flip();
-        //SetPosition();
-        
+        PlayerAttack();
+        CheckDeath();
+        print(inRange);
 	}
 
     public void SetPosition()
     {
         for(int i = 0; i < spawnPoints.Length; ++i)
         {
-            indexLoc++; //= Random.Range(0, spawnPoints.Length);
-            myTransform.position = spawnPoints[i].transform.position;
+            indexLoc = Random.Range(0, spawnPoints.Length);
+            myTransform.position = spawnPoints[indexLoc].transform.position;
         }
     }
 
     void FixedUpdate()
     {
         Move();
+    }
+
+    void PlayerAttack()
+    {
+        if(inRange && Input.GetButtonDown("Fire1"))
+        {
+            //Debug.Log("WE ARE ATTACKING");
+            health--;
+        }
+    }
+
+    void CheckDeath()
+    {
+        if(health <= 0)
+        {
+            inRange = false;
+            this.gameObject.SetActive(false);
+        }
     }
 
     void Move()
@@ -82,4 +117,32 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.tag == Tags.death)
+        {
+            this.gameObject.SetActive(false);
+        }
+        if(col.gameObject.tag == Tags.player)
+        {
+            inRange = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.gameObject.tag == Tags.player)
+        {
+            inRange = false;
+        }
+    }
+    /*
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if(col.gameObject.tag == Tags.player)
+        {
+            inRange = true;
+        }
+    }
+     * */
 }

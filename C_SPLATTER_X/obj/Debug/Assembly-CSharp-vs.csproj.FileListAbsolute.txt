@@ -1,0 +1,15 @@
+D:\GIT\CSplatterX\C_SPLATTER_X\Temp\bin\Debug\Assembly-CSharp.dll
+D:\GIT\CSplatterX\C_SPLATTER_X\Temp\bin\Debug\Assembly-CSharp.pdb
+D:\GIT\CSplatterX\C_SPLATTER_X\Temp\bin\Debug\UnityEditor.dll
+D:\GIT\CSplatterX\C_SPLATTER_X\Temp\bin\Debug\UnityEngine.dll
+D:\GIT\CSplatterX\C_SPLATTER_X\Temp\bin\Debug\UnityEngine.UI.dll
+D:\GIT\CSplatterX\C_SPLATTER_X\Temp\bin\Debug\Mono.Cecil.dll
+D:\GIT\CSplatterX\C_SPLATTER_X\Temp\bin\Debug\nunit.framework.dll
+D:\GIT\CSplatterX\C_SPLATTER_X\Temp\bin\Debug\Unity.DataContract.dll
+D:\GIT\CSplatterX\C_SPLATTER_X\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+D:\GIT\CSplatterX\C_SPLATTER_X\Temp\bin\Debug\UnityEngine.xml
+D:\GIT\CSplatterX\C_SPLATTER_X\Temp\bin\Debug\UnityEditor.xml
+D:\GIT\CSplatterX\C_SPLATTER_X\Temp\bin\Debug\UnityEngine.UI.xml
+D:\GIT\CSplatterX\C_SPLATTER_X\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+D:\GIT\CSplatterX\C_SPLATTER_X\obj\Debug\Assembly-CSharp.dll
+D:\GIT\CSplatterX\C_SPLATTER_X\obj\Debug\Assembly-CSharp.pdb
