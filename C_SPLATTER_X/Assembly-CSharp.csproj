@@ -56,6 +56,7 @@
      <None Include="Assets\SOUNDS\New Text Document.txt" />
      <None Include="Assets\SCRIPTS\New Text Document.txt" />
      <None Include="Assets\MATERIALS\New Text Document.txt" />
+     <None Include="Assets\ANIMATIONS\PLAYERWALKING\Walking Animation Order.txt" />
      <None Include="Assets\ANIMATIONS\New Text Document.txt" />
      <None Include="Assets\MUSIC\New Text Document.txt" />
      <None Include="Assets\codeandweb.com\Readme.txt" />
