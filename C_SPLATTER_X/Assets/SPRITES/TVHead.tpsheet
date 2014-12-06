@@ -4,10 +4,12 @@
 # To import these sprites into your Unity project, download "TexturePackerImporter":
 # http://www.codeandweb.com/texturepacker/unity
 #
-# Sprite sheet: TVHead.png (128 x 128)
-# $TexturePacker:SmartUpdate:5e2a1b797861c366665321af6bd5d9b6:39f78525660ebf52fb4de97bd82b38d5:e2e858edc1f3dcc5e5a640aebb7487d4$
+# Sprite sheet: TVHead.png (128 x 256)
+# $TexturePacker:SmartUpdate:a20a96c93de2928f9e600bbc87cc907c:c8601b10e10edb2d01023989128406b9:e2e858edc1f3dcc5e5a640aebb7487d4$
 #
 
-TV-HEAD STILL;2;64;39;62;0.5;0.5
-TV-HEAD WALKING1;43;64;39;62;0.5;0.5
-TV-HEAD WALKING2;84;64;39;62;0.5;0.5
+TV-HEAD JUMP1;2;192;39;62;0.5;0.5
+TV-HEAD JUMP2;43;182;31;72;0.5;0.5
+TV-HEAD STILL;76;192;39;62;0.5;0.5
+TV-HEAD WALKING1;2;118;39;62;0.5;0.5
+TV-HEAD WALKING2;43;118;39;62;0.5;0.5
