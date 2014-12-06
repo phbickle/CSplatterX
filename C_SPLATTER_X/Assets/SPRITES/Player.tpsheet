@@ -4,10 +4,14 @@
 # To import these sprites into your Unity project, download "TexturePackerImporter":
 # http://www.codeandweb.com/texturepacker/unity
 #
-# Sprite sheet: Player.png (64 x 256)
-# $TexturePacker:SmartUpdate:c5bf27ba0bf37a91c57cb60fe403a41e:d245d7bb34a62816d2ea539cd1d6319e:a0a070477e05db7d3390f8fde92eb6e6$
+# Sprite sheet: Player.png (128 x 256)
+# $TexturePacker:SmartUpdate:13fb9ac7d1b596f04878512b610ba83f:d87b138c2317652c243d67d693cc4360:a0a070477e05db7d3390f8fde92eb6e6$
 #
 
-PLAYERSTILL;2;190;46;64;0.5;0.5
-PLAYERWALKING-1;2;124;46;64;0.5;0.5
-PLAYERWALKING-2;2;58;46;64;0.5;0.5
+PLAYERATK-1;2;190;54;64;0.5;0.5
+PLAYERATK1-swoop;58;190;64;64;0.5;0.5
+PLAYERATK2-swoop;2;124;64;64;0.5;0.5
+PLAYERATKBASE;68;124;46;64;0.5;0.5
+PLAYERSTILL;68;124;46;64;0.5;0.5
+PLAYERWALKING-1;2;58;46;64;0.5;0.5
+PLAYERWALKING-2;50;58;46;64;0.5;0.5
