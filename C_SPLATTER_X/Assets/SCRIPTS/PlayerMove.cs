@@ -3,27 +3,46 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour 
 {
+    private GameManager myManager;
     private bool hasJump;                   //has the player jumped yet?
     private bool isGrounded;                //if the player on the ground or on the air?
     private bool facingRight;               //is the player facing the right side of the screen?
+    private bool jumpRequest;
     private float speed;                    //how fast will the player be?
     private float jumpForce;                //how high can the player jump?
     private float pushForce;                //how far away will the player be pushed from the enemy
+    private float jumpDelay;
+    private float repeatDelayPeriod;
     private Transform myTransform;          //player's transform component
     private Transform groundCheck;          //helps to check if we are grounded
     private Vector2 jumpMove;               //The jump vector, so that we can apply the jumpForce
     private Vector2 lookBack;               //looking at left side of the screen
     private Vector2 lookForward;            //looking at right side of the screen
-    
+    public float SPEED
+    {
+        get 
+        {
+            return speed;
+        }
+        set
+        {
+            speed = value;
+        }
+    }
+
 
     void Awake()
     {
+        jumpDelay = 0.0f;
+        repeatDelayPeriod = 1.0f;
         facingRight = true;                                                                         //Player starts looking at the right side
         hasJump = false;                                                                            //Hasn't jumped yet
         isGrounded = false;                                                                         //will automatically change when ground is detected
+        jumpRequest = false;
         speed = 2.5f;                                                                               //initialize speed
         jumpForce = 800.0f;                                                                         //initialize jumpForce
         pushForce = 400.0f;                                                                         //initialize pushForce
+        myManager = GameObject.FindGameObjectWithTag(Tags.GameManager).GetComponent<GameManager>();
         groundCheck = GameObject.FindGameObjectWithTag(Tags.groundCheck).transform;                 //get the groundcheck component
         myTransform = transform;                                                                    //initialize the player's transform component
         jumpMove = new Vector2(0, jumpForce);                                                       //the jump vector
@@ -43,6 +62,7 @@ public class PlayerMove : MonoBehaviour
     {
         Movement();
         Jump();
+        print(jumpDelay);
     }
 
     void JumpCheck()
@@ -50,10 +70,32 @@ public class PlayerMove : MonoBehaviour
         //if jump buttom (SpaceBar) is pressed and the character is grounded
         //then jump.
         //Set has jumped to true, so that the player can't jump more than once
-        if(Input.GetButtonDown("Jump") && (isGrounded))
+        if(!myManager.GREEN)
         {
-            hasJump = true;
+            if (Input.GetButtonDown("Jump") && (isGrounded))
+            {
+                hasJump = true;
+            }
         }
+        else if(myManager.GREEN)
+        {
+            if (Input.GetButtonDown("Jump") && (isGrounded))
+            {
+                jumpRequest = true;
+                
+            }
+        }
+
+        if(jumpRequest)
+        {
+            jumpDelay += Time.deltaTime;
+            if (jumpDelay >= 0.7f)
+            {
+                hasJump = true;
+                jumpDelay = 0.0f;
+                jumpRequest = false;
+            }
+        }   
     }
 
 

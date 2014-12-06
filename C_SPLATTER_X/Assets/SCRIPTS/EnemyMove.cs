@@ -29,6 +29,18 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
+        public float SPEED
+        {
+            get
+            {
+                return speed;
+            }
+            set
+            {
+                speed = value;
+            }
+        }
+
     void Awake()
     {
         inRange = false;
