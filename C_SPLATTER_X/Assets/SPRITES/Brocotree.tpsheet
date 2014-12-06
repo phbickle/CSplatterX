@@ -1,0 +1,13 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# http://www.codeandweb.com/texturepacker/unity
+#
+# Sprite sheet: Brocotree.png (64 x 256)
+# $TexturePacker:SmartUpdate:dd95c3382b69741997bdec8506cca34a:62a24b62206c0226091cca3b3aebcca2:ab575faaab60156d70d06ea1f0f9d4b9$
+#
+
+BROCCOLI SPRITEWIP;2;191;48;63;0.5;0.5
+BROCCOLI WALKING 1;2;126;48;63;0.5;0.5
+BROCCOLI WALKING 2;2;61;48;63;0.5;0.5
