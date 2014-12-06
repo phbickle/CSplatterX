@@ -50,6 +50,7 @@
      <None Include="Assets\SPRITES\New Text Document.txt" />
      <None Include="Assets\TEXTURES\New Text Document.txt" />
      <None Include="Assets\SOUNDS\New Text Document.txt" />
+     <None Include="Assets\ANIMATIONS\TVHEADWALKING\Walking Animation Order.txt" />
      <None Include="Assets\SCRIPTS\New Text Document.txt" />
      <None Include="Assets\MATERIALS\New Text Document.txt" />
      <None Include="Assets\ANIMATIONS\PLAYERWALKING\Walking Animation Order.txt" />
