@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         myColor = CurrentColor.white;
         player = GameObject.FindGameObjectWithTag(Tags.player);
         myPlayList = Resources.LoadAll("MUSIC", typeof(AudioClip));
-        audio.clip = myPlayList[0] as AudioClip;
+        GetComponent<AudioSource>().clip = myPlayList[0] as AudioClip;
         score = 0;
         //enemy = GameObject.FindGameObjectsWithTag(Tags.enemy);
     }
@@ -90,65 +90,65 @@ public class GameManager : MonoBehaviour
 
     void PlayBlueMusic()
     {
-        if (!audio.isPlaying)
+        if (!GetComponent<AudioSource>().isPlaying)
         {
-            audio.clip = myPlayList[1] as AudioClip;
+            GetComponent<AudioSource>().clip = myPlayList[1] as AudioClip;
             //Debug.Break();
-            audio.Play();
+            GetComponent<AudioSource>().Play();
         }
     }
 
     void PlayRedMusic()
     {
-        if(!audio.isPlaying)
+        if(!GetComponent<AudioSource>().isPlaying)
         {
-            audio.clip = myPlayList[5] as AudioClip;
-            audio.Play();
+            GetComponent<AudioSource>().clip = myPlayList[5] as AudioClip;
+            GetComponent<AudioSource>().Play();
         }
     }
 
     void PlayBlackMusic()
     {
-        if (!audio.isPlaying)
+        if (!GetComponent<AudioSource>().isPlaying)
         {
-            audio.clip = myPlayList[0] as AudioClip;
-            audio.Play();
+            GetComponent<AudioSource>().clip = myPlayList[0] as AudioClip;
+            GetComponent<AudioSource>().Play();
         }
     }
 
     void PlayGreenMusic()
     {
-        if (!audio.isPlaying)
+        if (!GetComponent<AudioSource>().isPlaying)
         {
-            audio.clip = myPlayList[2] as AudioClip;
-            audio.Play();
+            GetComponent<AudioSource>().clip = myPlayList[2] as AudioClip;
+            GetComponent<AudioSource>().Play();
         }
     }
 
     void PlayOrangeMusic()
     {
-        if (!audio.isPlaying)
+        if (!GetComponent<AudioSource>().isPlaying)
         {
-            audio.clip = myPlayList[3] as AudioClip;
-            audio.Play();
+            GetComponent<AudioSource>().clip = myPlayList[3] as AudioClip;
+            GetComponent<AudioSource>().Play();
         }
     }
 
     void PlayPurpleMusic()
     {
-        if (!audio.isPlaying)
+        if (!GetComponent<AudioSource>().isPlaying)
         {
-            audio.clip = myPlayList[4] as AudioClip;
-            audio.Play();
+            GetComponent<AudioSource>().clip = myPlayList[4] as AudioClip;
+            GetComponent<AudioSource>().Play();
         }
     }
 
     void PlayWhiteMusic()
     {
-        if (!audio.isPlaying)
+        if (!GetComponent<AudioSource>().isPlaying)
         {
-            audio.clip = myPlayList[6] as AudioClip;
-            audio.Play();
+            GetComponent<AudioSource>().clip = myPlayList[6] as AudioClip;
+            GetComponent<AudioSource>().Play();
         }
     }
 
@@ -281,8 +281,8 @@ public class GameManager : MonoBehaviour
         enemy = GameObject.FindGameObjectsWithTag(Tags.enemy);
         for(int i = 0; i < enemy.Length; ++i)
         {
-            enemy[i].collider2D.rigidbody2D.mass = 1000;
-            player.collider2D.rigidbody2D.mass = 1000;
+            enemy[i].GetComponent<Collider2D>().GetComponent<Rigidbody2D>().mass = 1000;
+            player.GetComponent<Collider2D>().GetComponent<Rigidbody2D>().mass = 1000;
         }
     }
 
@@ -291,8 +291,8 @@ public class GameManager : MonoBehaviour
         enemy = GameObject.FindGameObjectsWithTag(Tags.enemy);
         for (int i = 0; i < enemy.Length; ++i)
         {
-            enemy[i].collider2D.rigidbody2D.mass = 1;
-            player.collider2D.rigidbody2D.mass = 1;
+            enemy[i].GetComponent<Collider2D>().GetComponent<Rigidbody2D>().mass = 1;
+            player.GetComponent<Collider2D>().GetComponent<Rigidbody2D>().mass = 1;
         }
     }
 
@@ -331,7 +331,7 @@ public class GameManager : MonoBehaviour
         Platforms = GameObject.FindGameObjectsWithTag(Tags.Ground);
         for(int i = 0; i < Platforms.Length; ++i)
         {
-            Platforms[i].renderer.enabled = false;
+            Platforms[i].GetComponent<Renderer>().enabled = false;
         }
     }
 
@@ -340,7 +340,7 @@ public class GameManager : MonoBehaviour
         Platforms = GameObject.FindGameObjectsWithTag(Tags.Ground);
         for (int i = 0; i < Platforms.Length; ++i)
         {
-            Platforms[i].renderer.enabled = true;
+            Platforms[i].GetComponent<Renderer>().enabled = true;
         }
     }
 

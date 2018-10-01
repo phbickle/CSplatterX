@@ -104,7 +104,7 @@ public class EnemyMove : MonoBehaviour
 
     void Move()
     {
-        rigidbody2D.velocity = new Vector2(direction * speed, rigidbody2D.velocity.y);          //Use rigidbody2D velocity in order to achieve movement
+        GetComponent<Rigidbody2D>().velocity = new Vector2(direction * speed, GetComponent<Rigidbody2D>().velocity.y);          //Use rigidbody2D velocity in order to achieve movement
         float moveAbs = Mathf.Abs(speed);                                                       //Absolute value in order to keep a positive number, this will be used when animating
         anim.SetFloat("speed", moveAbs);
         //Check when to turn towards the character. Such check is baed in position distance.

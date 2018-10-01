@@ -113,8 +113,8 @@ public class PlayerMove : MonoBehaviour
         if(hasJump)
         {
             AudioSource.PlayClipAtPoint(jumpClip, myTransform.position);
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
-            rigidbody2D.AddForce(jumpMove);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0);
+            GetComponent<Rigidbody2D>().AddForce(jumpMove);
             hasJump = false;
         }
     }
@@ -151,7 +151,7 @@ public class PlayerMove : MonoBehaviour
             facingRight = true;
         }
         //Apply movement using velocity
-        rigidbody2D.velocity = new Vector2(move * speed, rigidbody2D.velocity.y);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(move * speed, GetComponent<Rigidbody2D>().velocity.y);
     }
 
     void Flip()
@@ -182,7 +182,7 @@ public class PlayerMove : MonoBehaviour
     void PushBack(Transform enemy)
     {
         Vector3 pushVector = myTransform.position - enemy.position;
-        rigidbody2D.AddForce(pushVector * pushForce);
+        GetComponent<Rigidbody2D>().AddForce(pushVector * pushForce);
     }
 
     void OnTriggerEnter2D(Collider2D col)
