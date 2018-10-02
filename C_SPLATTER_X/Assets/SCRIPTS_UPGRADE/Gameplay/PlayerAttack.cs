@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private Animator _anim;
-    private int _attackHash = Animator.StringToHash("Attack");
+    private int _attackHash = Animator.StringToHash("attack");
 
     void Awake()
     {

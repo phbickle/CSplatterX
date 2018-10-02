@@ -16,7 +16,6 @@ public class EnemyMove : MonoBehaviour
     private int indexLoc;                   //Location index to spawn the next enemy
     private int health;
     private GameObject[] spawnPoints;   //List of spawn points
-    private GameManager myManager;
 
 
     public int HEALTH
@@ -45,7 +44,6 @@ public class EnemyMove : MonoBehaviour
 
     void Awake()
     {
-        myManager = GameObject.FindGameObjectWithTag(Tags.GameManager).GetComponent<GameManager>();
         anim = GetComponent<Animator>();
         inRange = false;
         indexLoc = 0;
@@ -97,7 +95,7 @@ public class EnemyMove : MonoBehaviour
         if(health <= 0)
         {
             inRange = false;
-            myManager.SCORE += 100;
+            
             this.gameObject.SetActive(false);
         }
     }

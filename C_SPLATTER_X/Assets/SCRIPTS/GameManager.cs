@@ -4,38 +4,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour 
 {
-    //This manager controls:
-    //Colour changes 
-    //Amount of Enemies
-    //Music
-    //Menu
-    public Object[] myPlayList;
-    public Text scoreText;
-    //this enmum will be used to control the main menu
-    private enum GameStates
-    {
-        idle = 1,
-        inPlay
-    };
     
-    //Enum to control the different states of the game while in play.
-    //This will be done using a switch statement
-    private enum CurrentColor
-    {
-        blue = 1,
-        red,
-        green,
-        orange,
-        purple,
-        black,
-        white,
-        yellow
-    };
-
-    private int score;
-    private GameStates menu;
-    private CurrentColor myColor;
-    private float colorChangeTimer;
     public GameObject myCanvas;
     public PhysicsMaterial2D myMaterial;
     public GameObject[] enemy;
@@ -43,51 +12,18 @@ public class GameManager : MonoBehaviour
     public GameObject[] Platforms;
     private bool isGreenOn;
 
-    public bool GREEN
-    {
-        get
-        {
-            return isGreenOn;
-        }
-    }
-
-    public int SCORE
-    {
-        get
-        {
-            return score;
-        }
-        set
-        {
-            score = value;
-        }
-    }
     void Awake()
     {
         isGreenOn = false;
-        colorChangeTimer = 0.0f;
-        menu = GameStates.idle;
-        myColor = CurrentColor.white;
-        player = GameObject.FindGameObjectWithTag(Tags.player);
-        myPlayList = Resources.LoadAll("MUSIC", typeof(AudioClip));
-        GetComponent<AudioSource>().clip = myPlayList[0] as AudioClip;
-        score = 0;
-        //enemy = GameObject.FindGameObjectsWithTag(Tags.enemy);
     }
 
 	// Update is called once per frame
 	void Update () 
     {
-        UpdateStates();
-        UpdateColors();
-        UpdateScore();
+        //UpdateStates();
+        //UpdateColors();
 	}
-
-    void UpdateScore()
-    {
-        scoreText.text = "SCORE " + score;
-    }
-
+/*
     void PlayBlueMusic()
     {
         if (!GetComponent<AudioSource>().isPlaying)
@@ -170,7 +106,7 @@ public class GameManager : MonoBehaviour
     void UpdateColors()
     {
         colorChangeTimer += Time.deltaTime;
-        if(colorChangeTimer >= 20.0f)
+        if(colorChangeTimer >= _timeBeforeChange.value)
         {
             myColor = (CurrentColor)Random.Range(1, 8);
             colorChangeTimer = 0.0f;
@@ -368,4 +304,5 @@ public class GameManager : MonoBehaviour
     {
         Application.LoadLevel("main");
     }
+*/
 }
