@@ -5,13 +5,12 @@ public class EnemyPool : MonoBehaviour
 {
     private List<GameObject> myEnemyList;
     private GameObject myEnemy;
-    private int totalEnemiesCreated;
+    private IntegerVariable totalEnemiesCreated;
+    private FloatVariable _spawnMaxTime;
     private float spawnTime;
 	
     void Awake()
     {
-        spawnTime = 0.0f;
-        totalEnemiesCreated = 4;
         myEnemyList = new List<GameObject>();
         CreateEnemies();
     }
@@ -25,7 +24,7 @@ public class EnemyPool : MonoBehaviour
     void SpawnCounter()
     {
         spawnTime += Time.deltaTime;
-        if(spawnTime >= 2.0f)
+        if(spawnTime >= _spawnMaxTime.value)
         {
             ActivateEnemies();
             spawnTime = 0.0f;
@@ -35,7 +34,7 @@ public class EnemyPool : MonoBehaviour
 
     private void CreateEnemies()
     {
-        for(int i = 0; i < totalEnemiesCreated; ++i)
+        for(int i = 0; i < totalEnemiesCreated.value; ++i)
         {
             myEnemy = Instantiate(Resources.Load("PREFABS/TVHead")) as GameObject;
             myEnemyList.Add(myEnemy);
@@ -48,7 +47,7 @@ public class EnemyPool : MonoBehaviour
 
     private void ActivateEnemies()
     {
-        for(int i = 0; i < totalEnemiesCreated; ++i)
+        for(int i = 0; i < totalEnemiesCreated.value; ++i)
         {
             if(myEnemyList[i].activeSelf == false)
             {

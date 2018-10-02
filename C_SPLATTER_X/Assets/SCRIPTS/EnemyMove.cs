@@ -16,7 +16,6 @@ public class EnemyMove : MonoBehaviour
     private int indexLoc;                   //Location index to spawn the next enemy
     private int health;
     private GameObject[] spawnPoints;   //List of spawn points
-    private GameManager myManager;
 
 
     public int HEALTH
@@ -45,7 +44,6 @@ public class EnemyMove : MonoBehaviour
 
     void Awake()
     {
-        myManager = GameObject.FindGameObjectWithTag(Tags.GameManager).GetComponent<GameManager>();
         anim = GetComponent<Animator>();
         inRange = false;
         indexLoc = 0;
@@ -97,14 +95,14 @@ public class EnemyMove : MonoBehaviour
         if(health <= 0)
         {
             inRange = false;
-            myManager.SCORE += 100;
+            
             this.gameObject.SetActive(false);
         }
     }
 
     void Move()
     {
-        rigidbody2D.velocity = new Vector2(direction * speed, rigidbody2D.velocity.y);          //Use rigidbody2D velocity in order to achieve movement
+        GetComponent<Rigidbody2D>().velocity = new Vector2(direction * speed, GetComponent<Rigidbody2D>().velocity.y);          //Use rigidbody2D velocity in order to achieve movement
         float moveAbs = Mathf.Abs(speed);                                                       //Absolute value in order to keep a positive number, this will be used when animating
         anim.SetFloat("speed", moveAbs);
         //Check when to turn towards the character. Such check is baed in position distance.
