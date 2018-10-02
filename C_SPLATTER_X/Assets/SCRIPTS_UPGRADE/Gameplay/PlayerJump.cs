@@ -23,6 +23,7 @@ public class PlayerJump : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        _groundCheck = transform.Find("Player/GroundCheck");
         _rb = GetComponent<Rigidbody2D>();
         _myTransform = transform;
         _hasJumped.SetValue(false);

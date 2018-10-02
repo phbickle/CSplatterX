@@ -10,7 +10,7 @@ public class SimpleAudioEvent : AudioEvent
 
     public RangedFloat volume;
 
-    [MinMaxRange(0, 1)]
+    [MinMaxRange(0, 2)]
     public RangedFloat pitch;
 
     public override void Play(AudioSource source)
