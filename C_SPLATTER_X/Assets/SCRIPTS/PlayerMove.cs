@@ -3,167 +3,82 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour 
 {
-    private GameManager myManager;
-    private Animator anim;
-    private bool hasJump;                   //has the player jumped yet?
-    private bool isGrounded;                //if the player on the ground or on the air?
-    private bool facingRight;               //is the player facing the right side of the screen?
-    private bool jumpRequest;
-    private float speed;                    //how fast will the player be?
-    private float jumpForce;                //how high can the player jump?
-    private float pushForce;                //how far away will the player be pushed from the enemy
-    private float jumpDelay;
-    private Transform myTransform;          //player's transform component
-    private Transform groundCheck;          //helps to check if we are grounded
-    private Vector2 jumpMove;               //The jump vector, so that we can apply the jumpForce
-    private Vector2 lookBack;               //looking at left side of the screen
-    private Vector2 lookForward;            //looking at right side of the screen
-    public AudioClip jumpClip;
-    public AudioClip attackClip;
-    public AudioClip deathClip;
-    public GameObject gameOverCanvas;
+    private GameManager _myManager;
+    private Animator _anim;
 
-    public float SPEED
-    {
-        get 
-        {
-            return speed;
-        }
-        set
-        {
-            speed = value;
-        }
-    }
+    [SerializeField] private BooleanVariable _facingRight;
 
+    private FloatVariable _speed;                    //how fast will the player be?
+    private FloatVariable _pushForce;                //how far away will the player be pushed from the enemy
+    
+    private Transform _myTransform;          //player's transform component
+    private Transform _groundCheck;          //helps to check if we are grounded
+
+    private Vector2 _lookBack;               //looking at left side of the screen
+    private Vector2 _lookForward;            //looking at right side of the screen
+
+    private Rigidbody2D _rb;
 
     void Awake()
     {
-        anim = GetComponent<Animator>();
-        jumpDelay = 0.0f;
-
-        facingRight = true;                                                                         //Player starts looking at the right side
-        hasJump = false;                                                                            //Hasn't jumped yet
-        isGrounded = false;                                                                         //will automatically change when ground is detected
-        jumpRequest = false;
-        speed = 2.5f;                                                                               //initialize speed
-        jumpForce = 400.0f;                                                                         //initialize jumpForce
-        pushForce = 400.0f;                                                                         //initialize pushForce
-        myManager = GameObject.FindGameObjectWithTag(Tags.GameManager).GetComponent<GameManager>();
-        groundCheck = GameObject.FindGameObjectWithTag(Tags.groundCheck).transform;                 //get the groundcheck component
-        myTransform = transform;                                                                    //initialize the player's transform component
-        jumpMove = new Vector2(0, jumpForce);                                                       //the jump vector
-        lookBack = new Vector2(0f, 180.0f);                                                         //
-        lookForward = Vector2.zero;
+        _anim = GetComponent<Animator>();
+        _myTransform = transform;                                                                    //initialize the player's transform component
+        _lookBack = new Vector2(0f, 180.0f);                                                         
+        _lookForward = Vector2.zero;
     }
 
 	// Update is called once per frame
 	void Update () 
     {
-        CheckGround();
-        JumpCheck();
         Flip();
-        Attack();
 	}
 
     void FixedUpdate()
     {
         Movement();
-        Jump();
-        print(jumpDelay);
     }
-
-    void JumpCheck()
-    {
-        //if jump buttom (SpaceBar) is pressed and the character is grounded
-        //then jump.
-        //Set has jumped to true, so that the player can't jump more than once
-        if(!myManager.GREEN)
-        {
-            if (Input.GetButtonDown("Jump") && (isGrounded))
-            {
-                hasJump = true;
-            }
-        }
-        else if(myManager.GREEN)
-        {
-            if (Input.GetButtonDown("Jump") && (isGrounded))
-            {
-                jumpRequest = true;
-                
-            }
-        }
-
-        if(jumpRequest)
-        {
-            jumpDelay += Time.deltaTime;
-            if (jumpDelay >= 0.7f)
-            {
-                hasJump = true;
-                jumpDelay = 0.0f;
-                jumpRequest = false;
-            }
-        }   
-    }
-
-
-    void Jump()
-    {
-        //If player has jumped, the apply the jump vector
-        //reset hasjumped to false
-        if(hasJump)
-        {
-            AudioSource.PlayClipAtPoint(jumpClip, myTransform.position);
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0);
-            GetComponent<Rigidbody2D>().AddForce(jumpMove);
-            hasJump = false;
-        }
-    }
-
+    
     void Attack()
     {
         if(Input.GetButtonDown("Fire1"))
         {
-            anim.SetTrigger("attack");
-            AudioSource.PlayClipAtPoint(attackClip, myTransform.position);
+            _anim.SetTrigger("attack");
+            //AudioSource.PlayClipAtPoint(attackClip, myTransform.position);
         }
     }
 
-    void CheckGround()
-    {
-        //Check wheter we are touching the ground
-        isGrounded = Physics2D.Linecast(myTransform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-    }
+
 
     void Movement()
     {
         float move = Input.GetAxisRaw("Horizontal");                //Axisraw prevents incremental speeds. In other words, speed will be constant since the beginning
         float moveAbs = Mathf.Abs(move);                            //Absolute values of the move variable, it will always be a positive number. This will be used in animation
-        anim.SetFloat("speed", moveAbs);
+        _anim.SetFloat("speed", moveAbs);
 
-        //Axisras will return a number ranging from -1, 0 or 1
+        //Axisraw will return a number ranging from -1, 0 or 1
         //Depending on the value, the player will turn to the specific side
         if(move < 0)
         {
-            facingRight = false;
+            _facingRight.SetValue(false);
         }
         else if(move > 0)
         {
-            facingRight = true;
+            _facingRight.SetValue(true);
         }
         //Apply movement using velocity
-        GetComponent<Rigidbody2D>().velocity = new Vector2(move * speed, GetComponent<Rigidbody2D>().velocity.y);
+        _rb.velocity = new Vector2(move * _speed.value, _rb.velocity.y);
     }
 
     void Flip()
     {
         //Turn left or right
-        if(!facingRight)
+        if(!_facingRight.value)
         {
-            myTransform.rotation = Quaternion.Euler(lookBack);
+            _myTransform.rotation = Quaternion.Euler(_lookBack);
         }
-        else if(facingRight)
+        else if(!_facingRight.value)
         {
-            myTransform.rotation = Quaternion.Euler(lookForward);
+            _myTransform.rotation = Quaternion.Euler(_lookForward);
         }
     }
 
@@ -181,17 +96,15 @@ public class PlayerMove : MonoBehaviour
     //of the enemy he touched
     void PushBack(Transform enemy)
     {
-        Vector3 pushVector = myTransform.position - enemy.position;
-        GetComponent<Rigidbody2D>().AddForce(pushVector * pushForce);
+        Vector3 pushVector = _myTransform.position - enemy.position;
+        GetComponent<Rigidbody2D>().AddForce(pushVector * _pushForce.value);
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == Tags.death)
         {
-            AudioSource.PlayClipAtPoint(deathClip, myTransform.position);
-            gameOverCanvas.SetActive(true);
-            this.enabled = false;
+            
         }
     }
 }
