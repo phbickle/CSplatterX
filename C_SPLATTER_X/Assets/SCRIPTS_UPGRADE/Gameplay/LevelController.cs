@@ -2,10 +2,12 @@
 
 public class LevelController : MonoBehaviour
 {
-    private GameColor _gameColor;
-    private FloatVariable _timeBeforeChange;
-    private IntegerVariable _score;
-    private float _colorChangeTimer;
+    [SerializeField] private GameEvent _event;
+    [SerializeField] private GameColor _gameColor;
+    [SerializeField] private FloatVariable _timeBeforeChange;
+    [SerializeField] private IntegerVariable _score;
+    [SerializeField] private float _colorChangeTimer;
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -17,6 +19,14 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetButtonDown("Fire1"))
+        {
+            _event.Raise();
+        }
+    }
+
+    public void Something()
+    {
+        Debug.Log("EVENT HAS BEEN RAISED");
     }
 }
