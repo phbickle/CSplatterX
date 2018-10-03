@@ -19,14 +19,21 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
-        {
-            _event.Raise();
-        }
+        ChangeColor();
     }
 
     public void Something()
     {
         Debug.Log("EVENT HAS BEEN RAISED");
+    }
+
+    void ChangeColor()
+    {
+        _colorChangeTimer += Time.deltaTime;
+        if(_colorChangeTimer >= _timeBeforeChange.value)
+        {
+            _event.Raise();
+            _colorChangeTimer = 0.0f;
+        }
     }
 }
