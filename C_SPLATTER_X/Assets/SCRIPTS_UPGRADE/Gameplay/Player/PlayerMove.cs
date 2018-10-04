@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private BooleanVariable _facingRight;
 
     [SerializeField] private FloatVariable _speed;                    //how fast will the player be?
-    [SerializeField] private FloatVariable _pushForce;                //how far away will the player be pushed from the enemy
+    
     
     private Transform _myTransform;          //player's transform component
 
@@ -20,6 +20,7 @@ public class PlayerMove : MonoBehaviour
 
     void Awake()
     {
+        _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _myTransform = transform;                                                                    //initialize the player's transform component
         _lookBack = new Vector2(0f, 180.0f);                                                         
@@ -78,32 +79,6 @@ public class PlayerMove : MonoBehaviour
         else if(!_facingRight.value)
         {
             _myTransform.rotation = Quaternion.Euler(_lookForward);
-        }
-    }
-
-    //Use colliders in order to trigger enemy contact response
-    void OnCollisionStay2D(Collision2D col)
-    {
-        if(col.gameObject.tag == Tags.enemy)
-        {
-            //Debug.Log("HITTING SOMETHING HERE");
-            PushBack(col.transform);
-        }
-    }
-
-    //This function is in charge of pushing the player in the opposite direction
-    //of the enemy he touched
-    void PushBack(Transform enemy)
-    {
-        Vector3 pushVector = _myTransform.position - enemy.position;
-        _rb.AddForce(pushVector * _pushForce.value);
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.tag == Tags.death)
-        {
-            
         }
     }
 }

@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
-    [SerializeField] private BooleanVariable _hasJumped;
-    [SerializeField] private BooleanVariable _isGrounded;
-    [SerializeField] private BooleanVariable _jumpRequest;
-
+    private bool _hasJumped;
+    private bool _isGrounded;
+    private bool _jumpRequest;
     [SerializeField] private FloatVariable _jumpForce;
     [SerializeField] private FloatVariable _jumpDelay;
-
     [SerializeField] private GameColor _currColor;
 
     private Transform _myTransform;
@@ -26,49 +24,53 @@ public class PlayerJump : MonoBehaviour
         _groundCheck = transform.Find("Player/GroundCheck");
         _rb = GetComponent<Rigidbody2D>();
         _myTransform = transform;
-        _hasJumped.SetValue(false);
-        _isGrounded.SetValue(false);
+        _hasJumped = false;
+        _isGrounded = false;
         _jumpMove = new Vector2(0, _jumpForce.value);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetButtonDown("Jump"))
+        {
+            _rb.AddForce(_jumpMove);
+            _hasJumped = false;
+            //Jump();
+        }
     }
 
     void CheckGround()
     {
-        bool isGrounded = Physics2D.Linecast(_myTransform.position, _groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-        _isGrounded.SetValue(isGrounded);
+        _isGrounded = Physics2D.Linecast(_myTransform.position, _groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
     }
 
     void JumpCheck()
     {
         if(_currColor.playColorValue == PlayColor.green)
         {
-            _jumpRequest.SetValue(true);
+            _jumpRequest = true;
         }
 
-        if(_jumpRequest.value)
+        if(_jumpRequest)
         {
             float delay = 0;
             delay += Time.deltaTime;
             if(delay >= _jumpDelay.value)
             {
-                _hasJumped.SetValue(true);
+                _hasJumped = true;
                 delay = 0;
-                _jumpRequest.SetValue(false);
+                _jumpRequest = false;
             }
         }
     }
 
     void Jump()
     {
-        if(_hasJumped.value)
+        if(_hasJumped)
         {
             _rb.AddForce(_jumpMove);
-            _hasJumped.SetValue(false);
+            _hasJumped = false;
         }
     }
 }

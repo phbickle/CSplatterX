@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Platform System", menuName = "Systems/PlatformSystem", order = 1)]
+[CreateAssetMenu(fileName = "New Color System", menuName = "Systems/ColorSystem", order = 1)]
 public class ColorSystem : ScriptableObject
 {
+#if UNITY_EDITOR
+    public string DeveloperDescription = "";
+#endif
+
+    [Header("Colors available to play, can be extended")]
     public List<ColorDetails> details;
 
+    [Header("Current color at play")]
     public ColorDetails currentColorType;
 
     public IntegerVariable colorIndex;
