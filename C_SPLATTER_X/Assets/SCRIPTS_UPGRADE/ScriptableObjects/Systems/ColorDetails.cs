@@ -16,4 +16,5 @@ public class ColorDetails : ScriptableObject
     public int gravityMultiplier;
     public int velocityMultiplier;
     public int scaleMultiplier;
+    public AudioClip musicToPlay;
 }

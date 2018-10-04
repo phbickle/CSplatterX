@@ -54,4 +54,24 @@ public class ColorSystem : ScriptableObject
 
         rend.enabled = currentColorType.canSeeFloor;
     }
+
+    public void SetMusic(GameObject obj)
+    {
+        MusicPlayer mus = obj.GetComponent<MusicPlayer>();
+        if(null == mus)
+        {
+            return;
+        }
+
+        AudioSource aud = obj.GetComponent<AudioSource>();
+        if(null == aud)
+        {
+            return;
+        }
+
+        currentColorType = details[colorIndex.value];
+
+        aud.clip = currentColorType.musicToPlay;
+        aud.Play();
+    }
 }

@@ -7,12 +7,15 @@ public class PlayerJump : MonoBehaviour
     private bool _hasJumped;
     private bool _isGrounded;
     private bool _jumpRequest;
+    private AudioSource _audioSourceComp;
+
+    [SerializeField] private AudioEvent _jumpAudioEvent;
     [SerializeField] private FloatVariable _jumpForce;
     [SerializeField] private FloatVariable _jumpDelay;
     [SerializeField] private GameColor _currColor;
 
     private Transform _myTransform;
-    private Transform _groundCheck;
+    [SerializeField] private Transform _groundCheck;
 
     private Rigidbody2D _rb;
 
@@ -21,21 +24,25 @@ public class PlayerJump : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        _groundCheck = transform.Find("GroundCheck");
         _rb = GetComponent<Rigidbody2D>();
+        _audioSourceComp = GetComponent<AudioSource>();
         _myTransform = transform;
         _hasJumped = false;
         _isGrounded = false;
         _jumpRequest = false;
     }
 
+    private void Update()
+    {
+        CheckGround();
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        CheckGround();
         if(Input.GetButtonDown("Jump"))
         {
-            Jump();
+            JumpCheck();
         }
     }
 
@@ -73,7 +80,8 @@ public class PlayerJump : MonoBehaviour
     {
         if(_isGrounded)
         {
-            _rb.AddForce(new Vector2(0, _jumpForce.value));
+            _jumpAudioEvent.Play(_audioSourceComp);
+            _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce.value);
             _hasJumped = false;
         }
     }
