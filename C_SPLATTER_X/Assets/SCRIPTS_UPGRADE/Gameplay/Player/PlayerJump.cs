@@ -21,22 +21,21 @@ public class PlayerJump : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        _groundCheck = transform.Find("Player/GroundCheck");
+        _groundCheck = transform.Find("GroundCheck");
         _rb = GetComponent<Rigidbody2D>();
         _myTransform = transform;
         _hasJumped = false;
         _isGrounded = false;
-        _jumpMove = new Vector2(0, _jumpForce.value);
+        _jumpRequest = false;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        CheckGround();
         if(Input.GetButtonDown("Jump"))
         {
-            _rb.AddForce(_jumpMove);
-            _hasJumped = false;
-            //Jump();
+            Jump();
         }
     }
 
@@ -58,18 +57,23 @@ public class PlayerJump : MonoBehaviour
             delay += Time.deltaTime;
             if(delay >= _jumpDelay.value)
             {
+                Jump();
                 _hasJumped = true;
                 delay = 0;
                 _jumpRequest = false;
             }
         }
+        else
+        {
+            Jump();
+        }
     }
 
     void Jump()
     {
-        if(_hasJumped)
+        if(_isGrounded)
         {
-            _rb.AddForce(_jumpMove);
+            _rb.AddForce(new Vector2(0, _jumpForce.value));
             _hasJumped = false;
         }
     }

@@ -76,7 +76,7 @@ public class PlayerMove : MonoBehaviour
         {
             _myTransform.rotation = Quaternion.Euler(_lookBack);
         }
-        else if(!_facingRight.value)
+        else if(_facingRight.value)
         {
             _myTransform.rotation = Quaternion.Euler(_lookForward);
         }
