@@ -13,8 +13,8 @@ public class ColorDetails : ScriptableObject
     public PhysicsMaterial2D physMat2D;
     public bool isSticky;
     public bool canSeeFloor;
-    public int gravityMultiplier;
-    public int velocityMultiplier;
-    public int scaleMultiplier;
+    public int gravityScale;
+    public int velocityScale;
+    public int scaleValue;
     public AudioClip musicToPlay;
 }

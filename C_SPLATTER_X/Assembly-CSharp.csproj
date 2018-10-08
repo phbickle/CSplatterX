@@ -71,6 +71,7 @@
     <Compile Include="Assets\SCRIPTS_UPGRADE\Gameplay\GameElements\PlatformBehavior.cs" />
     <Compile Include="Assets\SCRIPTS_UPGRADE\Gameplay\Player\EnemyCheck.cs" />
     <Compile Include="Assets\SCRIPTS_UPGRADE\Gameplay\Player\PlayerAttack.cs" />
+    <Compile Include="Assets\SCRIPTS_UPGRADE\Gameplay\Player\PlayerBehavior.cs" />
     <Compile Include="Assets\SCRIPTS_UPGRADE\Gameplay\Player\PlayerHealth.cs" />
     <Compile Include="Assets\SCRIPTS_UPGRADE\Gameplay\Player\PlayerJump.cs" />
     <Compile Include="Assets\SCRIPTS_UPGRADE\Gameplay\Player\PlayerMove.cs" />

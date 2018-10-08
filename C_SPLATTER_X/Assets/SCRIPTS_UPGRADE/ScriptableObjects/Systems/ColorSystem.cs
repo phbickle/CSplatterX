@@ -50,9 +50,15 @@ public class ColorSystem : ScriptableObject
             return;
         }
 
-        currentColorType = details[colorIndex.value];
+        Collider2D col = obj.GetComponent<Collider2D>();
+        if(null == col)
+        {
+            return;
+        }
 
+        currentColorType = details[colorIndex.value];
         rend.enabled = currentColorType.canSeeFloor;
+        col.sharedMaterial = currentColorType.physMat2D;
     }
 
     public void SetMusic(GameObject obj)
@@ -73,5 +79,10 @@ public class ColorSystem : ScriptableObject
 
         aud.clip = currentColorType.musicToPlay;
         aud.Play();
+    }
+
+    public void SetPlayerStats(GameObject obj)
+    {
+
     }
 }
