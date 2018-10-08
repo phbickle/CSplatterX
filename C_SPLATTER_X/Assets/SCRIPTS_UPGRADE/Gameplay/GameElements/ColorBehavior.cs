@@ -22,10 +22,7 @@ public class ColorBehavior : MonoBehaviour
 
     private void Start()
     {
-        if(null != colorSystem)
-        {
-            //ColorType = colorSystem.defaultColorType;
-        }
+        ChangeType();
     }
 
     public void ChangeType()

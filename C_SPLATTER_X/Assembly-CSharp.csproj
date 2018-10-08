@@ -60,11 +60,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\SCRIPTS\EnemyMove.cs" />
     <Compile Include="Assets\SCRIPTS\EnemyPool.cs" />
     <Compile Include="Assets\SCRIPTS\GameManager.cs" />
     <Compile Include="Assets\SCRIPTS\Tags.cs" />
     <Compile Include="Assets\SCRIPTS_UPGRADE\Gameplay\Enemy\EnemyHealth.cs" />
+    <Compile Include="Assets\SCRIPTS_UPGRADE\Gameplay\Enemy\EnemyMove.cs" />
     <Compile Include="Assets\SCRIPTS_UPGRADE\Gameplay\GameElements\ColorBehavior.cs" />
     <Compile Include="Assets\SCRIPTS_UPGRADE\Gameplay\GameElements\LevelController.cs" />
     <Compile Include="Assets\SCRIPTS_UPGRADE\Gameplay\GameElements\MusicPlayer.cs" />

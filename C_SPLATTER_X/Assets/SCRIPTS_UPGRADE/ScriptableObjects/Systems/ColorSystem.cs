@@ -16,6 +16,8 @@ public class ColorSystem : ScriptableObject
     public ColorDetails currentColorType;
 
     public IntegerVariable colorIndex;
+
+    public FloatVariable speedValue;
     public void SetGameColor(GameObject obj)
     {
         ColorBehavior beh = obj.GetComponent<ColorBehavior>();
@@ -83,6 +85,21 @@ public class ColorSystem : ScriptableObject
 
     public void SetPlayerStats(GameObject obj)
     {
+        PlayerBehavior beh = obj.GetComponent<PlayerBehavior>();
+        if(null == beh)
+        {
+            return;
+        }
 
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        if(null == rb)
+        {
+            return;
+        }
+
+        currentColorType = details[colorIndex.value];
+        speedValue.value = currentColorType.colorSpeed;
+        rb.gravityScale = currentColorType.gravityScale;
+        rb.transform.localScale = new Vector2(currentColorType.scaleValue, currentColorType.scaleValue);
     }
 }

@@ -15,16 +15,6 @@ public class PlayerHealth : MonoBehaviour
         _myTransform = transform;
     }
 
-    //Use colliders in order to trigger enemy contact response
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.tag == Tags.enemy)
-        {
-            //Debug.Log("HITTING SOMETHING HERE");
-            PushBack(col.gameObject);
-        }
-    }
-
     //This function is in charge of pushing the player in the opposite direction
     //of the enemy he touched
     void PushBack(GameObject obj)
