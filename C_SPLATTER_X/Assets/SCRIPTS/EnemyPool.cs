@@ -3,57 +3,66 @@ using System.Collections;
 using System.Collections.Generic;
 public class EnemyPool : MonoBehaviour 
 {
-    private List<GameObject> myEnemyList;
-    private GameObject myEnemy;
-    private IntegerVariable totalEnemiesCreated;
-    private FloatVariable _spawnMaxTime;
-    private float spawnTime;
+    [SerializeField] private List<GameObject> _myEnemyList;
+    [SerializeField] private List<Transform> _enemySpawnPoints;
+    [SerializeField] private IntegerVariable _enemiesSpawnedCap;
+    [SerializeField] private IntegerVariable _enemyCounter;
+    [SerializeField] private FloatVariable _spawnRate;
+    private Transform _myTransform;
+    private float _spawnTime;
+    private float _canSpawn;
+    private int _arraySize;
+    private bool _shouldSpawn;
 	
     void Awake()
     {
-        myEnemyList = new List<GameObject>();
-        CreateEnemies();
+        _enemyCounter.value = 0;
+        _arraySize = _myEnemyList.Count;
+        _canSpawn = 0;
+        _shouldSpawn = false;
+        for(int i = 0; i < _arraySize; i++)
+        {
+            _myEnemyList[i] = Instantiate(_myEnemyList[i], transform.position, Quaternion.identity) as GameObject;
+            _myEnemyList[i].transform.position = _enemySpawnPoints[i].transform.position;
+            _myEnemyList[i].SetActive(false);
+        }
     }
-	
-	// Update is called once per frame
-	void Update () 
+
+    // Update is called once per frame
+    private void Update()
     {
         SpawnCounter();
-	}
+    }
 
     void SpawnCounter()
     {
-        spawnTime += Time.deltaTime;
-        if(spawnTime >= _spawnMaxTime.value)
+        _spawnTime = Time.time;
+        if ((_spawnTime > _canSpawn))
         {
             ActivateEnemies();
-            spawnTime = 0.0f;
+            _canSpawn = _spawnTime + _spawnRate.value;
         }
         
     }
 
-    private void CreateEnemies()
-    {
-        for(int i = 0; i < totalEnemiesCreated.value; ++i)
-        {
-            myEnemy = Instantiate(Resources.Load("PREFABS/TVHead")) as GameObject;
-            myEnemyList.Add(myEnemy);
-            myEnemyList[i].SetActive(false);
-            myEnemy = Instantiate(Resources.Load("PREFABS/BrocoTree")) as GameObject;
-            myEnemyList.Add(myEnemy);
-            myEnemyList[i].SetActive(false);
-        }
-    }
-
     private void ActivateEnemies()
     {
-        for(int i = 0; i < totalEnemiesCreated.value; ++i)
+        for(int i = 0; i < _myEnemyList.Count; ++i)
         {
-            if(myEnemyList[i].activeSelf == false)
+            if (_enemyCounter.value < _enemiesSpawnedCap.value)
             {
-                myEnemyList[i].SetActive(true);
-                myEnemyList[i].GetComponent<EnemyMove>().SetPosition();
-                myEnemyList[i].GetComponent<EnemyMove>().HEALTH = 2;
+                _shouldSpawn = true;
+            }
+            else
+            {
+                _shouldSpawn = false;
+            }
+
+            if (_myEnemyList[i].activeSelf == false && _shouldSpawn)
+            {
+                _myEnemyList[i].transform.position = _enemySpawnPoints[i].transform.position;
+                _myEnemyList[i].SetActive(true);
+                _enemyCounter.value++;
                 return;
             }
         }
