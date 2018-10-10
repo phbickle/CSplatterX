@@ -61,10 +61,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\codeandweb.com\Editor\TexturePackerImporter.cs" />
-    <Compile Include="Assets\SCRIPTS_UPGRADE\ScriptableObjects\Variables\Editor\AudioEventEditor.cs" />
-    <Compile Include="Assets\SCRIPTS_UPGRADE\ScriptableObjects\Variables\Editor\EventEditor.cs" />
-    <Compile Include="Assets\SCRIPTS_UPGRADE\ScriptableObjects\Variables\Editor\FloatReferenceDrawer.cs" />
-    <Compile Include="Assets\SCRIPTS_UPGRADE\ScriptableObjects\Variables\Editor\RangedFloatDrawer.cs" />
+    <Compile Include="Assets\SCRIPTS\ScriptableObjects\Variables\Editor\AudioEventEditor.cs" />
+    <Compile Include="Assets\SCRIPTS\ScriptableObjects\Variables\Editor\EventEditor.cs" />
+    <Compile Include="Assets\SCRIPTS\ScriptableObjects\Variables\Editor\FloatReferenceDrawer.cs" />
+    <Compile Include="Assets\SCRIPTS\ScriptableObjects\Variables\Editor\RangedFloatDrawer.cs" />
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>C:/Users/Esteban/Documents/Unity/CSplatterX/C_SPLATTER_X/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>

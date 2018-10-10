@@ -39,8 +39,6 @@ public class EnemyHealth : MonoBehaviour
             _enemyCounter.value--;
             this.gameObject.SetActive(false);
         }
-
-        
     }
 
     private void OnEnable()
