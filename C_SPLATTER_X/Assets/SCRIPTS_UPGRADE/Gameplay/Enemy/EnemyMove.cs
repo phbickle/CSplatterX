@@ -34,7 +34,6 @@ public class EnemyMove : MonoBehaviour
 	void Update () 
     {
         Flip();
-        Debug.Log(this.name + " Facing Right? " + _facingRight);
 	}
 
     void FixedUpdate()

@@ -40,13 +40,7 @@ public class EnemyHealth : MonoBehaviour
             this.gameObject.SetActive(false);
         }
 
-        if(col.gameObject.tag == Tags.player)
-        {
-            var _prb = col.GetComponent<Rigidbody2D>();
-            Vector3 pushVector = col.transform.position - _myTransform.position;
-            _playerHealth.value--;
-            _prb.AddForce(pushVector * _bashForce.value);
-        }
+        
     }
 
     private void OnEnable()
