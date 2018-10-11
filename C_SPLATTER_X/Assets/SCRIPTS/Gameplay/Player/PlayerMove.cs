@@ -18,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private FloatVariable _speed;              //how fast will the player be?
     [SerializeField] private FloatVariable _tvHeadBashForce;
     [SerializeField] private FloatVariable _brocoTreeBashForce;
+    [SerializeField] private BooleanVariable _isPlayerDead;
 
     private Transform _myTransform;                             //player's transform component
 
@@ -28,6 +29,7 @@ public class PlayerMove : MonoBehaviour
 
     void Awake()
     {
+        _isPlayerDead.SetValue(false);
         _unfreeze = 0;
         _canMove = true;
         _rb = GetComponent<Rigidbody2D>();
@@ -99,6 +101,7 @@ public class PlayerMove : MonoBehaviour
     void DisablePlayer()
     {
         this.gameObject.SetActive(false);
+        _isPlayerDead.SetValue(true);
     }
 
     void OnTriggerEnter2D(Collider2D col)

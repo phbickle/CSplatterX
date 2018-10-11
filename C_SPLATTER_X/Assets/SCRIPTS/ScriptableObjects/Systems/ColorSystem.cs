@@ -102,4 +102,24 @@ public class ColorSystem : ScriptableObject
         rb.gravityScale = currentColorType.gravityScale;
         rb.transform.localScale = new Vector2(currentColorType.scaleValue, currentColorType.scaleValue);
     }
+
+    public void SetEnemyStats(GameObject obj)
+    {
+        EnemyBehavior beh = obj.GetComponent<EnemyBehavior>();
+        if (null == beh)
+        {
+            return;
+        }
+
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        if (null == rb)
+        {
+            return;
+        }
+
+        currentColorType = details[colorIndex.value];
+        speedValue.value = currentColorType.colorSpeed;
+        rb.gravityScale = currentColorType.gravityScale;
+        rb.transform.localScale = new Vector2(currentColorType.scaleValue, currentColorType.scaleValue);
+    }
 }
